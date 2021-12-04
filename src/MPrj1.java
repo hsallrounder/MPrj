@@ -27,12 +27,12 @@ class Employee {
     }
 
     public void setSal(int Basic,int HRA,int DA,int IT) {
-        Sal = Basic+HRA+DA-IT;;
+        Sal = Basic+HRA+DA-IT;
     }
 }
 
 public class MPrj1 {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Employee[] emp = new Employee[7];
         //1001
         emp[0]=new Employee(1001,"Ashish","01/01/2009",'e',"R&D",20000,8000,3000);
@@ -50,10 +50,9 @@ public class MPrj1 {
         emp[6]=new Employee(1007,"Tanmay","12/06/2006",'c',"PM",29000,12000,10000);
 
         if(args.length>0){
+            int flag=0;
             for(int i=0;i<emp.length;i++){
                 if(Integer.parseInt(args[0])==emp[i].ENo){
-                    String Desig;
-                    int DA;
                     switch (emp[i].DCode){
                         case 'e' -> {
                             emp[i].Dsgn = "Engineer";
@@ -80,11 +79,12 @@ public class MPrj1 {
                     System.out.printf("%-10s %-11s %-13s %-14s %-10s","Emp No.","Emp Name","Department","Designation","Salary");
                     System.out.println();
                     System.out.printf("%-10d %-11s %-13s %-14s %-10d",emp[i].ENo,emp[i].EName,emp[i].Dept,emp[i].Dsgn,emp[i].getSal());
+                    flag=1;
+                    break;
                 }
-                else{
-                    System.out.println("There is no employee with empid : "+Integer.parseInt(args[0]));
-                }
-                break;
+            }
+            if(flag==0){
+                System.out.println("There is no employee with empid : "+Integer.parseInt(args[0]));
             }
         }
     }
